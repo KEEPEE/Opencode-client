@@ -1,94 +1,87 @@
 # OpenCode Client
 
-[![Platform](https://img.shields.io/badge/platform-ios%20%7C%20android%20%7C%20macos%20%7C%20windows%20%7C%20linux-blue)](https://flutter.dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-blue)](https://flutter.dev)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](/LICENSE)
 
-**OpenCode Client** is a modern, multi-platform mobile client built with Flutter, designed to interface with the **OpenCode AI Assistant**. It allows you to manage your programming projects and communicate with AI directly from your mobile device or tablet.
+**OpenCode Client** is a multi-platform mobile app for communicating with the [OpenCode AI Assistant](https://opencode.ai) directly from your phone or tablet. Manage your programming projects, review AI-generated code changes, and control every action the assistant takes -- all from one app.
 
 ---
 
 ## 📩 Support & Contact
 
-If you encounter any issues, have questions about using the app, or wish to report a bug, please use the following channels:
+If you encounter any issues, have questions, or wish to report a bug:
 
-* **Email:** [sp.keepee@gmail.com](mailto:sp.keepee@gmail.com) (Primary support contact)
-* **GitHub Issues:** [Report an issue here](https://github.com/KEEPEE/Opencode-client/issues)
-* **Web:** [GitHub Repository](https://github.com/KEEPEE/Opencode-client)
+- **Email:** [sp.keepee@gmail.com](mailto:sp.keepee@gmail.com)
+- **GitHub Issues:** [Report an issue](https://github.com/KEEPEE/Opencode-client/issues)
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 🤖 AI Chat Assistant
-* **Interactive Conversations:** Ask questions, request code explanations, or ask for new feature implementations.
-* **Multi-Model Support:** Seamlessly switch between OpenAI, Anthropic, OpenRouter, and other AI models.
-* **Streaming & Reasoning:** Watch responses generate in real-time and view the AI's "thought process" for complex tasks.
+### AI Chat Assistant
+- **Multi-model support** -- switch between providers (OpenAI, Anthropic, Google, OpenRouter, and more) with a built-in provider filter
+- **Real-time streaming** -- watch responses generate token-by-token with a live progress indicator
+- **Reasoning view** -- inspect the AI's step-by-step thought process for complex tasks
+- **Session history** -- resume any previous conversation at any time; sessions are organized by project and directory
+- **Live task list** -- see the AI's current to-do list update in real time as it works
 
-### 📁 Project Management
-* **Git Integration:** Connect to existing repositories hosted on your OpenCode server.
-* **File Explorer:** Browse directory structures and files directly within the app.
-* **Multi-Project Management:** Manage and switch between several projects simultaneously.
+### Project & Directory Management
+- **Server-side projects** -- connect to OpenCode servers running on your own infrastructure
+- **Directory browser** -- navigate the remote file system, create new project directories, and select where to work
+- **Subdirectory session discovery** -- select a parent directory and see sessions from all child projects at once
+- **Multi-project switching** -- manage several projects simultaneously
 
-### 🔒 Security & Control
-* **Permission Management:** You approve or deny AI requests to modify files or execute terminal commands.
-* **Detailed Diff View:** Review exactly what the AI changed with a clear visual diff before committing.
-* **Secure Local Storage:** Credentials and server details are stored locally and securely on your device.
+### Security & Control
+- **Permission management** -- every file edit and terminal command the AI wants to run requires your explicit approval
+- **Diff view** -- review exactly what changed (additions, deletions, modified files) before committing
+- **Encrypted credential storage** -- passwords are stored in the platform-native keychain/keystore (iOS Keychain, Android Keystore, libsecret on Linux, Windows Credential Manager), never in plain text
+- **Agent questions** -- answer contextual questions the AI asks to better understand your requirements
+
+### Additional Capabilities
+- **SSE event stream** with auto-reconnect -- real-time notifications for permissions, questions, and task updates
+- **Tool call inspector** -- see every bash command, file edit, and search the AI performs
+- **Model switching mid-session** -- change the AI model at any point during a conversation without losing context
+- **Pull-to-refresh** everywhere -- always see the latest state
 
 ---
 
 ## 📱 Supported Platforms
-Thanks to the Flutter framework, OpenCode Client is available for:
-* ✅ **iOS** (iPhone & iPad)
-* ✅ **Android**
 
-
----
-
-## 🛠️ Installation for Developers
-
-1.  Ensure you have the [Flutter SDK](https://docs.flutter.dev/get-started/install) installed.
-2.  Clone the repository:
-    ```bash
-    git clone [https://github.com/KEEPEE/Opencode-client.git](https://github.com/KEEPEE/Opencode-client.git)
-    ```
-3.  Install dependencies:
-    ```bash
-    flutter pub get
-    ```
-4.  Run the application:
-    ```bash
-    flutter run
-    ```
+- ✅ **iOS** (iPhone & iPad)
+- ✅ **Android**
 
 ---
 
-## 🎯 Quick Start Guide
+## 🎯 How to Use
 
-1.  **Add a Server:** Tap `+`, enter your OpenCode server URL, and test the connection.
-2.  **Select a Project:** Choose a git repository you wish to work on.
-3.  **Start Chatting:** Start a new session, select your preferred AI model, and enter your prompt.
-4.  **Manage Changes:** Go to "View changes" to approve or reject edits made by the assistant.
-
----
-
-## 🏗️ Technical Architecture
-The app follows **Clean Architecture** principles:
-* `lib/api/` - HTTP client for server communication.
-* `lib/models/` - Data models (Project, Session, Message).
-* `lib/screens/` - UI layers built with Material Design 3.
-* `lib/services/` - Local services and state management (Provider).
+1. **Add a Server** -- tap `+`, enter your OpenCode server URL and credentials, and test the connection.
+2. **Select a Project** -- pick an existing project or create a new directory.
+3. **Start Chatting** -- choose an AI model (with provider filtering) and type your request.
+4. **Review Changes** -- tap "View changes" to see a detailed diff of everything the AI modified.
+5. **Approve or Deny** -- the AI asks for permission before executing commands or editing files. You stay in control.
 
 ---
 
-## 🤝 Contributing
-Contributions are welcome! If you have ideas for improvements or found a bug:
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`).
-4. Push to the branch and open a Pull Request.
+## 🔐 Security
+
+| Data | Storage | Encryption |
+|------|---------|------------|
+| Server URLs, usernames | Local app storage | No (non-sensitive) |
+| Passwords | Platform secure storage | Yes (AES / Keychain / Keystore) |
+| Chat history | On your OpenCode server | Controlled by you |
+
+The app does **not** collect analytics, display ads, or share any data with third parties. All communication happens directly between your device and the OpenCode server you configure.
+
+For full details, see our [Privacy Policy](/PRIVACY_POLICY.md).
 
 ---
 
-## 📝 License
-https://github.com/KEEPEE/Opencode-client/blob/main/LICENSE
+## 📝 Legal
 
+- [License](/LICENSE) (Proprietary -- Copyright 2026 Keepee)
+- [Privacy Policy](/PRIVACY_POLICY.md)
+- [Terms of Service](/TERMS_OF_SERVICE.md)
+
+---
+
+Made with care for the OpenCode community.
