@@ -90,4 +90,5 @@ Contributions are welcome! If you have ideas for improvements or found a bug:
 ---
 
 ## 📝 License
+https://github.com/KEEPEE/Opencode-client/blob/main/LICENSE
 
